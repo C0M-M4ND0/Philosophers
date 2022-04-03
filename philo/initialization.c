@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:40:47 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/03/31 08:24:14 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/03 14:05:22 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,7 @@ int	ft_initialization(t_data *data, int ac, char **av)
 			return (write(2, "ERROR : Number of times each \
 			philosopher must eat can't be less than 1\n", 71), 1);
 	}
-	if (ft_init_mutex(data))
-		return (write(2, "ERROR : Initialization mutex has failed !\n", 42), 1);
-	if (ft_init_struct_philo(data))
-		return (write(2, "ERORR : Initialization struct \
-		< philo > has failed!\n", 52), 1);
+	if (ft_init_mutex(data) || ft_init_struct_philo(data))
+		return (write(2, "ERROR : Initialization has failed !\n", 42), 1);
 	return (0);
 }
