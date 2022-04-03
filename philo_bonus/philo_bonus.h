@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:52:29 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 13:44:16 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/03 22:11:44 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <stdlib.h>
 # include <semaphore.h>
 # include <sys/stat.h>
-#include <signal.h>
-#include <sys/types.h>
+# include <signal.h>
+# include <sys/types.h>
 
 typedef struct s_philo
 {
@@ -44,6 +44,7 @@ typedef struct s_data
 	int				die;
 	int				check_eat;
 	long long		beginning_time;
+	sem_t			*sem_die;
 	sem_t			*forks;
 	sem_t			*print;
 	sem_t			*eating;
@@ -55,7 +56,7 @@ int			ft_atoi(const char *str);
 void		*routine_fonction(void	*philo);
 int			ft_initialization(t_data *philo, int ac, char **av);
 long long	get_time(void);
-int 		ft_creat_process(t_data *data, t_philo *philo);
+int			ft_creat_process(t_data *data, t_philo *philo);
 void		ft_creat_thread(t_data *data, t_philo *philo);
 void		print_message(t_data *data, char *string, int philo_id);
 void		ft_check_death(t_data *data, t_philo *philo);

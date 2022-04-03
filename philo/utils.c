@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 15:21:36 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 13:15:10 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/03 20:08:43 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_check_death(t_data *data, t_philo *philo)
 		while ((index < data->nbrofphilo) && (!(data->die)))
 		{
 			pthread_mutex_lock(&(data->eating));
-			if ((get_time() - philo[index].check_die_time) >= data->time_to_die)
+			if ((get_time() - philo[index].check_die_time) > data->time_to_die)
 			{
 				print_message(data, "died", index);
 				data->die = 1;
