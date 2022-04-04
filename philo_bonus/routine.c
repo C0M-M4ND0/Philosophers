@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:49:59 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/04 13:38:44 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:39:29 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	taking_fork(t_data *data, t_philo *philo)
 	print_message(data, "has taken a fork", philo->id);
 	sem_wait(data->forks);
 	print_message(data, "has taken a fork", philo->id);
-	ft_start_eat(philo->data, philo);
+	start_eat(philo->data, philo);
 	sem_post(data->forks);
 	sem_post(data->forks);
 	if (data->check_eat)
