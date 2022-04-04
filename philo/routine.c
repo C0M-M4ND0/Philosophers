@@ -6,20 +6,23 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:49:59 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/04 20:10:35 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:56:30 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_usleep(int time_limit)
+void	ft_usleep(int time_limit, t_data *data)
 {
 	long long	time;
 
 	time = get_time();
-	usleep((time_limit - (time_limit * 0.03)) * 1000);
-	while ((get_time() - time) < time_limit)
-		usleep(1);
+	if (!(data->die))
+	{
+		usleep((time_limit - (time_limit * 0.03)) * 1000);
+		while ((get_time() - time) < time_limit)
+			usleep(1);
+	}
 }
 
 void	start_eat(t_data *data, t_philo *philo)
@@ -29,7 +32,7 @@ void	start_eat(t_data *data, t_philo *philo)
 	philo->check_die_time = get_time();
 	pthread_mutex_unlock(&(data->eating));
 	(philo->eat)++;
-	ft_usleep(data->time_to_eat);
+	ft_usleep(data->time_to_eat, data);
 }
 
 int	taking_fork(t_data *data, t_philo *philo)
@@ -53,20 +56,20 @@ void	*routine_fonction(void *philo)
 
 	copy_of_philo = (t_philo *)philo;
 	data = copy_of_philo->data;
+	if (data->nbrofphilo == 1)
+	{
+		print_message(data, "has taken a fork", copy_of_philo->id);
+		ft_usleep(data->time_to_die, data);
+		return (NULL);
+	}
 	if (copy_of_philo->id % 2)
 		usleep(10000);
 	while (!(data->die))
 	{
-		if (data->nbrofphilo == 1)
-		{
-			print_message(data, "has taken a fork", copy_of_philo->id);
-			ft_usleep(data->time_to_die);
-			break ;
-		}
 		if (taking_fork(data, copy_of_philo))
 			break ;
 		print_message(data, "is sleeping", copy_of_philo->id);
-		ft_usleep(data->time_to_sleep);
+		ft_usleep(data->time_to_sleep, data);
 		print_message(data, "is  thinking", copy_of_philo->id);
 	}
 	return (NULL);
