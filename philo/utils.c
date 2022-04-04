@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 15:21:36 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 20:08:43 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:14:48 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_message(t_data *data, char *string, int philo_id)
 	pthread_mutex_unlock(&(data->print));
 }
 
-void	ft_check_eat(t_data *data, t_philo *philo)
+void	check_eat(t_data *data, t_philo *philo)
 {
 	int	index;
 
@@ -36,7 +36,7 @@ void	ft_check_eat(t_data *data, t_philo *philo)
 		data->check_eat = 1;
 }
 
-void	ft_check_death(t_data *data, t_philo *philo)
+void	check_death(t_data *data, t_philo *philo)
 {
 	int		index;
 
@@ -57,12 +57,12 @@ void	ft_check_death(t_data *data, t_philo *philo)
 		if (data->die)
 			break ;
 		if (data->time_each_philo_must_eat > 0)
-			ft_check_eat(data, data->philo);
+			check_eat(data, data->philo);
 		usleep(1000);
 	}
 }
 
-void	ft_end_philo(t_data *data, t_philo *philo)
+void	end(t_data *data, t_philo *philo)
 {
 	int	index;
 

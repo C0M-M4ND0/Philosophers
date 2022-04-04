@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/10 14:52:29 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 22:11:44 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:18:52 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/stat.h>
 # include <signal.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 
 typedef struct s_philo
 {
@@ -54,13 +55,13 @@ typedef struct s_data
 int			check_args(int ac, char **av);
 int			ft_atoi(const char *str);
 void		*routine_fonction(void	*philo);
-int			ft_initialization(t_data *philo, int ac, char **av);
+int			initialization(t_data *philo, int ac, char **av);
 long long	get_time(void);
-int			ft_creat_process(t_data *data, t_philo *philo);
-void		ft_creat_thread(t_data *data, t_philo *philo);
+int			creat_process(t_data *data, t_philo *philo);
+void		creat_thread(t_data *data, t_philo *philo);
 void		print_message(t_data *data, char *string, int philo_id);
-void		ft_check_death(t_data *data, t_philo *philo);
-void		ft_end_philo(t_data *data);
+void		check_death(t_data *data, t_philo *philo);
+void		end(t_data *data);
 void		kill_process(t_data *data);
 
 #endif

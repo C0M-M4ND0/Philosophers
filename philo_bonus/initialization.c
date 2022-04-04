@@ -6,13 +6,13 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:40:47 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 22:08:17 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:17:33 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	ft_init(t_data *data)
+int	init(t_data *data)
 {
 	int	index;
 
@@ -32,26 +32,23 @@ int	ft_init(t_data *data)
 	return (0);
 }
 
-int	ft_init_sem(t_data *data)
+int	init_sem(t_data *data)
 {
-	mode_t	permission;
-
 	sem_unlink("FORK");
 	sem_unlink("PRINT");
 	sem_unlink("EATING");
 	sem_unlink("DIE");
-	permission = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
-	data->forks = sem_open("FORK", O_CREAT, permission, data->nbrofphilo);
-	data->print = sem_open("PRINT", O_CREAT, permission, 1);
-	data->eating = sem_open("EATING", O_CREAT, permission, 1);
-	data->sem_die = sem_open("DIE", O_CREAT, permission, 1);
+	data->forks = sem_open("FORK", O_CREAT, 0777, data->nbrofphilo);
+	data->print = sem_open("PRINT", O_CREAT, 0777, 1);
+	data->eating = sem_open("EATING", O_CREAT, 0777, 1);
+	data->sem_die = sem_open("DIE", O_CREAT, 0777, 1);
 	if (data->forks == SEM_FAILED || data->print == SEM_FAILED
 		|| data->eating == SEM_FAILED || data->sem_die == SEM_FAILED)
 		return (1);
 	return (0);
 }
 
-int	ft_initialization(t_data *data, int ac, char **av)
+int	initialization(t_data *data, int ac, char **av)
 {
 	data->nbrofphilo = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
@@ -68,7 +65,7 @@ int	ft_initialization(t_data *data, int ac, char **av)
 			return (write(2, "ERROR : Number of times each \
 						philosopher must eat can't be less than 1\n", 71), 1);
 	}
-	if ((ft_init_sem(data)) || (ft_init(data)))
+	if ((init_sem(data)) || (init(data)))
 		return (write(2, "ERROR : Initialization has failed !\n", 42), 1);
 	return (0);
 }

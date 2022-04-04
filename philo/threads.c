@@ -6,13 +6,13 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 09:12:44 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/03/30 19:10:08 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:16:11 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_creat_thread(t_data *data, t_philo *philo)
+int	creat_thread(t_data *data, t_philo *philo)
 {
 	int	index;
 
@@ -26,7 +26,7 @@ int	ft_creat_thread(t_data *data, t_philo *philo)
 			return (write(2, "ERROR : Creating thread has failed !\n", 37), 1);
 		index++;
 	}
-	ft_check_death(data, data->philo);
-	ft_end_philo(data, data->philo);
+	check_death(data, data->philo);
+	end(data, data->philo);
 	return (0);
 }

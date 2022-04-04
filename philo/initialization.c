@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:40:47 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/03 14:05:22 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:15:39 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_init_mutex(t_data *data)
 	return (0);
 }
 
-int	ft_initialization(t_data *data, int ac, char **av)
+int	initialization(t_data *data, int ac, char **av)
 {
 	data->nbrofphilo = ft_atoi(av[1]);
 	data->time_to_die = ft_atoi(av[2]);
