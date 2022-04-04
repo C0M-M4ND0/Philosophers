@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:49:59 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/04 13:38:20 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 20:10:35 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	*routine_fonction(void *philo)
 		usleep(10000);
 	while (!(data->die))
 	{
-		if (data->nbrofphilo < 2)
+		if (data->nbrofphilo == 1)
 		{
 			print_message(data, "has taken a fork", copy_of_philo->id);
 			ft_usleep(data->time_to_die);

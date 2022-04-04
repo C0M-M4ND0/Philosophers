@@ -6,7 +6,7 @@
 #    By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/15 11:18:01 by oabdelha          #+#    #+#              #
-#    Updated: 2022/04/02 10:51:52 by oabdelha         ###   ########.fr        #
+#    Updated: 2022/04/04 20:14:42 by oabdelha         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,5 @@ fclean: clean
 	
 norm:
 	@norminette $(SRC) $(HEADER)
+	
 re: fclean all
