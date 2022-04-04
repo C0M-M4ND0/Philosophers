@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:49:59 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/04 13:12:51 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/04 13:38:20 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_usleep(int time_limit)
 		usleep(1);
 }
 
-void	ft_start_eat(t_data *data, t_philo *philo)
+void	start_eat(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(&(data->eating));
 	print_message(data, "is eating", philo->id);
@@ -32,13 +32,13 @@ void	ft_start_eat(t_data *data, t_philo *philo)
 	ft_usleep(data->time_to_eat);
 }
 
-int	ft_taking_fork(t_data *data, t_philo *philo)
+int	taking_fork(t_data *data, t_philo *philo)
 {
 	pthread_mutex_lock(&(data->forks[philo->l_f]));
 	print_message(data, "has taken a fork", philo->id);
 	pthread_mutex_lock(&(data->forks[philo->r_f]));
 	print_message(data, "has taken a fork", philo->id);
-	ft_start_eat(philo->data, philo);
+	start_eat(philo->data, philo);
 	pthread_mutex_unlock(&(data->forks[philo->l_f]));
 	pthread_mutex_unlock(&(data->forks[philo->r_f]));
 	if (data->check_eat)
@@ -63,7 +63,7 @@ void	*routine_fonction(void *philo)
 			ft_usleep(data->time_to_die);
 			break ;
 		}
-		if (ft_taking_fork(data, copy_of_philo))
+		if (taking_fork(data, copy_of_philo))
 			break ;
 		print_message(data, "is sleeping", copy_of_philo->id);
 		ft_usleep(data->time_to_sleep);
