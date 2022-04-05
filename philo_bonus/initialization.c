@@ -6,7 +6,7 @@
 /*   By: oabdelha <oabdelha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 16:40:47 by oabdelha          #+#    #+#             */
-/*   Updated: 2022/04/04 13:17:33 by oabdelha         ###   ########.fr       */
+/*   Updated: 2022/04/05 12:54:01 by oabdelha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int	initialization(t_data *data, int ac, char **av)
 						philosopher must eat can't be less than 1\n", 71), 1);
 	}
 	if ((init_sem(data)) || (init(data)))
-		return (write(2, "ERROR : Initialization has failed !\n", 42), 1);
+		return (write(2, "ERROR : Initialization has failed !\n", 37), 1);
 	return (0);
 }
